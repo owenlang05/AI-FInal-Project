@@ -1,0 +1,140 @@
+/* WeatherDisplay.css */
+:root {
+    /* Define color variables for easier theming */
+    --card-bg-day: linear-gradient(to bottom, #87CEEB, #E0F2F7); /* Sky blue gradient */
+    --card-bg-night: linear-gradient(to bottom, #2c3e50, #4a6888); /* Dark blue gradient */
+    --text-color-day: #1a1a1a;
+    --text-color-night: #ecf0f1;
+    --secondary-text-day: #555;
+    --secondary-text-night: #bdc3c7;
+    --accent-color: #3498db; /* A consistent accent */
+    --border-radius: 12px;
+    --box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .weather-display-card {
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    max-width: 380px;
+    margin: 20px auto; /* Center card for standalone viewing */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    transition: background-color 0.5s ease, color 0.5s ease;
+    overflow: hidden; /* Ensure gradient doesn't bleed past border-radius */
+    position: relative; /* For potential future absolute positioned elements */
+  }
+  
+  /* Apply day/night themes */
+  .weather-display-card.day {
+    background: var(--card-bg-day);
+    color: var(--text-color-day);
+  }
+  
+  .weather-display-card.night {
+    background: var(--card-bg-night);
+    color: var(--text-color-night);
+  }
+  
+  .weather-display-card.loading {
+     background: #f0f0f0;
+     color: #555;
+     text-align: center;
+     padding: 40px 20px;
+  }
+  
+  
+  .location-header {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* Semi-transparent border */
+  }
+  .weather-display-card.day .location-header {
+     border-bottom-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  
+  .location-header h2 {
+    margin: 0 0 5px 0;
+    font-size: 1.6em;
+    font-weight: 600;
+    color: var(--accent-color); /* Use accent for city name */
+  }
+  .weather-display-card.night .location-header h2 {
+      color: #ffffff; /* Brighter accent on dark background */
+  }
+  
+  
+  .location-header .current-time {
+    font-size: 0.95em;
+    margin: 0;
+  }
+  /* Adjust secondary text color based on theme */
+  .weather-display-card.day .location-header .current-time,
+  .weather-display-card.day .weather-details p,
+  .weather-display-card.day .condition-text {
+      color: var(--secondary-text-day);
+  }
+  .weather-display-card.night .location-header .current-time,
+  .weather-display-card.night .weather-details p,
+  .weather-display-card.night .condition-text {
+      color: var(--secondary-text-night);
+  }
+  
+  .current-weather-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 25px;
+  }
+  
+  .temp-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px; /* Space between icon and temperature */
+    margin-bottom: 10px;
+  }
+  
+  .weather-icon {
+    width: 80px;  /* Slightly larger icon */
+    height: 80px;
+    object-fit: contain; /* Prevent distortion */
+    filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2)); /* Subtle shadow */
+  }
+  
+  .temperature {
+    font-size: 3.8em; /* Larger temperature */
+    font-weight: 300; /* Lighter font weight for temp */
+    line-height: 1;
+  }
+  .weather-display-card.night .temperature {
+     font-weight: 400; /* Slightly bolder on dark */
+  }
+  
+  .condition-text {
+    font-size: 1.3em;
+    font-style: italic;
+    margin-top: 5px; /* Space below temp/icon */
+  }
+  
+  .weather-details {
+    font-size: 1em;
+    line-height: 1.7;
+  }
+  
+  .weather-details p {
+    margin: 6px 0;
+  }
+  
+  /* Example of adding a subtle background pattern (optional) */
+  /*
+  .weather-display-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: url('path/to/subtle-pattern.png');
+      opacity: 0.05;
+      pointer-events: none;
+  }
+  */

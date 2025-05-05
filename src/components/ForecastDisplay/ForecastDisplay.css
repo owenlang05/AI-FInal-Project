@@ -1,0 +1,119 @@
+/* ForecastDisplay.css */
+/* Define or import CSS variables (e.g., --border-radius, --accent-color) */
+/* Fallbacks are provided */
+
+.forecast-container {
+    /* Use a subtle background, perhaps slightly transparent or a very light solid */
+    background-color: rgba(255, 255, 255, 0.5); /* Example: semi-transparent white */
+    backdrop-filter: blur(4px); /* Optional: frosted glass effect */
+    padding: 20px 20px 15px 20px; /* Less bottom padding */
+    border-radius: var(--border-radius, 12px);
+    margin: 25px auto; /* Space from other elements */
+    max-width: 90%; /* Responsive width */
+    width: fit-content; /* Shrink to content width up to max-width */
+    min-width: 300px; /* Prevent becoming too narrow */
+    box-shadow: var(--box-shadow, 0 4px 10px rgba(0, 0, 0, 0.1));
+    color: #333; /* Default text color */
+    border: 1px solid rgba(0, 0, 0, 0.05); /* Very subtle border */
+  }
+  
+  /* Night theme styling for the container */
+  .night .forecast-container {
+      background-color: rgba(44, 62, 80, 0.6); /* Darker semi-transparent */
+      backdrop-filter: blur(6px);
+      color: #ecf0f1; /* Light text */
+      border-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .forecast-container.loading,
+  .forecast-container.empty {
+    text-align: center;
+    padding: 30px 20px;
+    color: #777;
+    font-style: italic;
+    background-color: rgba(200, 200, 200, 0.3); /* Muted background */
+  }
+  .night .forecast-container.loading,
+  .night .forecast-container.empty {
+      color: #bdc3c7;
+      background-color: rgba(74, 104, 136, 0.4);
+  }
+  
+  
+  .forecast-title {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.4em;
+    font-weight: 600;
+    color: var(--accent-color, #3498db); /* Use accent color for title */
+  }
+  .night .forecast-title {
+     color: #ffffff; /* Brighter title for night */
+  }
+  
+  .forecast-days-wrapper {
+    display: flex;
+    justify-content: flex-start; /* Start days from the left */
+    gap: 12px; /* Space between day cards */
+    overflow-x: auto; /* Enable horizontal scrolling if needed */
+    padding: 5px 0 10px 0; /* Padding for scrollbar visibility and spacing */
+  
+    /* Improve scrolling experience on touch devices */
+    -webkit-overflow-scrolling: touch;
+    /* Hide scrollbar by default, show on hover (optional) */
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: var(--accent-color, #3498db) rgba(0,0,0,0.1); /* Firefox */
+  }
+  .night .forecast-days-wrapper {
+      scrollbar-color: #bdc3c7 rgba(255,255,255,0.1); /* Scrollbar for night theme */
+  }
+  
+  /* Webkit (Chrome, Safari) scrollbar styling */
+  .forecast-days-wrapper::-webkit-scrollbar {
+    height: 8px;
+  }
+  .forecast-days-wrapper::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+  }
+  .night .forecast-days-wrapper::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .forecast-days-wrapper::-webkit-scrollbar-thumb {
+    background-color: var(--accent-color, #3498db);
+    border-radius: 4px;
+    border: 2px solid transparent; /* Creates padding around thumb */
+    background-clip: content-box;
+  }
+  .night .forecast-days-wrapper::-webkit-scrollbar-thumb {
+      background-color: #bdc3c7;
+  }
+  
+  .forecast-days-wrapper::-webkit-scrollbar-thumb:hover {
+    background-color: #2980b9; /* Darker accent on hover */
+  }
+  .night .forecast-days-wrapper::-webkit-scrollbar-thumb:hover {
+      background-color: #ffffff;
+  }
+  
+  /* Prevent flex items from shrinking too much initially */
+  .forecast-days-wrapper > * { /* Target children = ForecastDay components */
+    flex-shrink: 0;
+  }
+  
+  /* Optional: Media query to stack days vertically on very small screens */
+  /* @media (max-width: 480px) {
+    .forecast-days-wrapper {
+      flex-direction: column;
+      overflow-x: hidden;
+      align-items: center;
+      gap: 15px;
+    }
+    .forecast-day-card {
+        width: 80%;
+        min-width: auto;
+        flex-basis: auto;
+    }
+  } */

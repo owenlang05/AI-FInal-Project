@@ -1,0 +1,22 @@
+{
+    "location": {
+      "city": "New York",
+      "country": "USA",
+      "localtime": "2025-04-16 11:17"
+    },
+    "current": {
+      "temp_c": 12.5,
+      "temp_f": 54.5,
+      "feelslike_c": 11.0,
+      "feelslike_f": 51.8,
+      "condition": {
+        "text": "Partly cloudy",
+        "icon": "//cdn.weatherapi.com/weather/64x64/day/116.png",
+        "code": 1003
+      },
+      "humidity": 65,
+      "wind_kph": 15.0,
+      "wind_mph": 9.3,
+      "is_day": 1
+    }
+}
