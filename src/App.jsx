@@ -53,7 +53,7 @@ function App() {
   const onFormSubmit = () => {
     var city = search.split(',')
     var state = city[1] || ''
-    const call = `http://api.openweathermap.org/geo/1.0/direct?q=${city[0]},${state},US&limit=5&appid=${super_secret_key}`
+    const call = `https://api.openweathermap.org/geo/1.0/direct?q=${city[0]},${state},US&limit=5&appid=${super_secret_key}`
     console.log(call)
     axios.get(call)
     .then(response => {
