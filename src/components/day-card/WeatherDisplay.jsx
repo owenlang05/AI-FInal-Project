@@ -17,6 +17,7 @@ const WeatherDisplay = ({ weatherData, units = 'metric' }) => {
   const displayTemp = weatherData.list[0].main.temp;
   const displayFeelsLike = weatherData.list[0].main.feels_like;
   const displayWindSpeed = weatherData.list[0].wind.speed;
+  const displayHumidity = weatherData.list[0].main.humidity;
 
   // Ensure icon URL has protocol (some APIs return //...)
   //const iconUrl = condition.icon.startsWith('http') ? condition.icon : `https:${condition.icon}`;
@@ -45,7 +46,7 @@ const WeatherDisplay = ({ weatherData, units = 'metric' }) => {
 
       <div className="weather-details">
         <p>Feels like: {displayFeelsLike}{tempUnit}</p>
-       { /*<p>Humidity: {current.humidity}%</p>*/} 
+        <p>Humidity: {displayHumidity}%</p>
         <p>Wind: {displayWindSpeed} {speedUnit}</p>
       </div>
     </div>

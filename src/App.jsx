@@ -3,11 +3,13 @@ import WeatherDisplay from './components/day-card/WeatherDisplay'
 import ForecastDisplay from './components/ForecastDisplay/ForecastDisplay';
 import axios from 'axios';
 import './App.css'
+import { Form } from 'react-bootstrap';
 
 function App() {
   const [weatherData, setWeatherData] = useState(null);
-  const [location, setLocation] = useState()
+  const [location, setLocation] = useState(null)
   const [loading, setLoading] = useState(true);
+  const [search, setSearch]= useState('')
   const [error, setError] = useState(null);
   const [units, setUnits] = useState('metric'); // 'metric' or 'imperia
   // I know this is included in the project however there is no way to completely obfuscate it once deployed so it will remain in the codebase :)
@@ -48,15 +50,36 @@ function App() {
   const toggleUnits = () => {
      setUnits(prevUnits => prevUnits === 'metric' ? 'imperial' : 'metric');
   }
-
+  const onFormSubmit = () => {
+    var city = search.split(',')
+    var state = city[1] || ''
+    const call = `http://api.openweathermap.org/geo/1.0/direct?q=${city[0]},${state},US&limit=5&appid=${super_secret_key}`
+    console.log(call)
+    axios.get(call)
+    .then(response => {
+      console.log(response)
+      setLocation({
+        lat: response.data[0].lat,
+        lon:  response.data[0].lon
+      })
+      .catch(error => {
+        console.error(error)
+      })
+    })
+  }
   return (
-    <div>
+    <div style={{display: 'block'}}>
       <h1>Weather Dashboard</h1>
       {/* Add controls, like a city search input or unit toggle */}
-       <button onClick={toggleUnits} style={{margin: '10px', padding: '8px 12px'}}>
+      <input type='text' value={search} onChange={e=> setSearch(e.target.value)} placeholder='Search Cities' style={{margin: '10px', padding: '8px 12px'}}/>
+      <button onClick={onFormSubmit} style={{margin: '10px', padding: '8px 12px'}}>
+        Search
+      </button>
+      <br/>
+       <button onClick={toggleUnits} style={{margin: '0 auto', padding: '8px 12px'}}>
           Switch to {units === 'metric' ? 'Fahrenheit' : 'Celsius'}
        </button>
-
+      
       {/* Render the WeatherDisplay component */}
       {error && <p style={{color: 'red'}}>{error}</p>}
       {/* Pass loading state implicitly via weatherData being null */}

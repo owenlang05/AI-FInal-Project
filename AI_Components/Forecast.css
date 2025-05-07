@@ -46,7 +46,7 @@
     margin-bottom: 20px;
     font-size: 1.4em;
     font-weight: 600;
-    color: #242424; /* Use accent color for title */
+    color: var(--accent-color, #3498db); /* Use accent color for title */
   }
   .night .forecast-title {
      color: #ffffff; /* Brighter title for night */
